@@ -1,0 +1,51 @@
+apply plugin: 'java'
+apply plugin: 'idea'
+
+buildscript {
+    repositories {
+        maven {
+            name = "sw-artifactory-maven-virtual"
+            url 'https://artifactory.sherwin.com/artifactory/maven-virtual'
+        }
+    }
+}
+
+repositories {
+    add buildscript.repositories.getByName("sw-artifactory-maven-virtual")
+}
+
+dependencies {
+    implementation 'org.seleniumhq.selenium:selenium-java:4.5.0'
+
+    testImplementation 'org.seleniumhq.selenium:selenium-java:4.5.0'
+
+    // TestNG
+    implementation 'org.testng:testng:7.6.1'
+    //extent reports
+    implementation 'com.aventstack:extentreports:5.0.9'
+    //WebDrivers
+    implementation 'io.github.bonigarcia:webdrivermanager:5.3.0'
+
+    implementation 'commons-io:commons-io:2.4'
+    //Apache poi
+    implementation group: 'org.apache.poi', name: 'poi', version: '5.2.3'
+    //Apache poi.ooxml
+    implementation group: 'org.apache.poi', name: 'poi-ooxml', version: '5.2.3'
+    // https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-core
+    implementation group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.19.0'
+    // https://mvnrepository.com/artifact/org.slf4j/slf4j-simple
+    testImplementation group: 'org.slf4j', name: 'slf4j-simple', version: '2.0.3'
+
+
+
+
+
+}
+
+test {
+    systemProperties(System.getProperties())
+    useTestNG() {
+        dependsOn cleanTest
+        useDefaultListeners = true
+    }
+}
