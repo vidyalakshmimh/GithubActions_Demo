@@ -26,7 +26,7 @@ jobs:
     - name: Setup Gradle
       uses: gradle/gradle-build-action@v2
     - name: Run build with Gradle Wrapper
-      run: ./gradlew build
+      run: gradlew build
 #     steps:
 #     - uses: actions/checkout@v3
 #     - name: Set up JDK 11
